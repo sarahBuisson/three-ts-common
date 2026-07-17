@@ -4,6 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "main": "dist-electron/main.cjs",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "start": "vite",
     "dev": "vite build --mode development && vite",
@@ -13,12 +16,22 @@
     "build:renderer": "vite build",
     "build": "tsc -b && npm run build:main && npm run build:preload && npm run build:renderer",
     "build:web": "tsc -b && vite build",
+    "build:libs": "npm run build --workspaces --if-present",
     "lint": "eslint .",
     "preview": "vite preview",
     "dist:win": "npm run build && electron-builder --win",
     "dist:win:portable": "npm run build && electron-builder --win portable",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "version:lib1": "npm version patch --workspace=packages/exemple-lib1",
+    "version:lib2": "npm version patch --workspace=packages/exemple-lib2",
+    "version:lib1:minor": "npm version minor --workspace=packages/exemple-lib1",
+    "version:lib2:minor": "npm version minor --workspace=packages/exemple-lib2",
+    "version:lib1:major": "npm version major --workspace=packages/exemple-lib1",
+    "version:lib2:major": "npm version major --workspace=packages/exemple-lib2",
+    "tag:lib1": "node -e \"const v=require('./packages/exemple-lib1/package.json').version; require('child_process').execSync('git tag @electron-three-boiler/exemple-lib1@'+v, {stdio:'inherit'})\"",
+    "tag:lib2": "node -e \"const v=require('./packages/exemple-lib2/package.json').version; require('child_process').execSync('git tag @electron-three-boiler/exemple-lib2@'+v, {stdio:'inherit'})\"",
+    "release": "git push && git push --tags"
   },
   "dependencies": {
     "@emnapi/core": "^1.10.0",

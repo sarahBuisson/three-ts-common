@@ -13,6 +13,10 @@ dist-ssr
 *.local
 release
 
+# Packages build outputs
+packages/*/dist
+packages/*/node_modules
+
 
 # Editor directories and files
 .vscode/*

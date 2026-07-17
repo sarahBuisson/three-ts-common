@@ -1,0 +1,64 @@
+name: Release Package
+
+on:
+  push:
+    tags:
+      - '@electron-three-boiler/*@*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build libs
+        run: npm run build:libs
+
+      - name: Extract package info from tag
+        id: pkg
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          # Tag format: @electron-three-boiler/exemple-lib1@0.1.0
+          SCOPE=$(echo "$TAG" | sed 's/@[^@]*$//')
+          VERSION=$(echo "$TAG" | grep -oP '[^@]+$')
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "scope=$SCOPE" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "${{ steps.pkg.outputs.scope }} v${{ steps.pkg.outputs.version }}"
+          tag_name: ${{ steps.pkg.outputs.tag }}
+          body: |
+            ## ${{ steps.pkg.outputs.scope }} v${{ steps.pkg.outputs.version }}
+
+            ### Installation
+
+            ```bash
+            npm install github:${{ github.repository }}#${{ steps.pkg.outputs.tag }}
+            ```
+
+            Ou dans `package.json` :
+            ```json
+            {
+              "dependencies": {
+                "${{ steps.pkg.outputs.scope }}": "github:${{ github.repository }}#semver:^${{ steps.pkg.outputs.version }}"
+              }
+            }
+            ```
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
