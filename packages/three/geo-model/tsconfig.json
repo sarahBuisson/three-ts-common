@@ -15,5 +15,11 @@
     "skipLibCheck": true,
     "verbatimModuleSyntax": true
   },
+  "references": [
+    { "path": "../../algorithme/model-tableau" }
+  ],
   "include": ["src"]
 }
+
+
+

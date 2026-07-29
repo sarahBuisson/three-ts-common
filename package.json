@@ -5,7 +5,9 @@
   "type": "module",
   "main": "dist-electron/main.cjs",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/algorithme/*",
+    "packages/three/*"
   ],
   "scripts": {
     "start": "vite",
@@ -31,6 +33,14 @@
     "version:lib2:major": "npm version major --workspace=packages/exemple-lib2",
     "tag:lib1": "node -e \"const v=require('./packages/exemple-lib1/package.json').version; require('child_process').execSync('git tag @electron-three-boiler/exemple-lib1@'+v, {stdio:'inherit'})\"",
     "tag:lib2": "node -e \"const v=require('./packages/exemple-lib2/package.json').version; require('child_process').execSync('git tag @electron-three-boiler/exemple-lib2@'+v, {stdio:'inherit'})\"",
+    "version:model-tableau": "npm version patch --workspace=packages/algorithme/model-tableau",
+    "version:model-tableau:minor": "npm version minor --workspace=packages/algorithme/model-tableau",
+    "version:model-tableau:major": "npm version major --workspace=packages/algorithme/model-tableau",
+    "tag:model-tableau": "node -e \"const v=require('./packages/algorithme/model-tableau/package.json').version; require('child_process').execSync('git tag @electron-three-boiler/model-tableau@'+v, {stdio:'inherit'})\"",
+    "version:geo-model": "npm version patch --workspace=packages/three/geo-model",
+    "version:geo-model:minor": "npm version minor --workspace=packages/three/geo-model",
+    "version:geo-model:major": "npm version major --workspace=packages/three/geo-model",
+    "tag:geo-model": "node -e \"const v=require('./packages/three/geo-model/package.json').version; require('child_process').execSync('git tag @electron-three-boiler/geo-model@'+v, {stdio:'inherit'})\"",
     "release": "git push && git push --tags"
   },
   "dependencies": {

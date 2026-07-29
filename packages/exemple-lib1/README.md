@@ -39,4 +39,3 @@ Les versions sont gérées via des Git tags. Voir les [Releases GitHub](https://
 npm run version:lib1        # Bumpe la version (patch)
 npm run release             # Push + crée le tag Git
 ```
-
