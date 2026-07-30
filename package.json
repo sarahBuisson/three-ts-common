@@ -7,7 +7,8 @@
   "workspaces": [
     "packages/*",
     "packages/algorithme/*",
-    "packages/three/*"
+    "packages/three/*",
+    "packages/three/material/*"
   ],
   "scripts": {
     "start": "vite",
@@ -41,6 +42,10 @@
     "version:geo-model:minor": "npm version minor --workspace=packages/three/geo-model",
     "version:geo-model:major": "npm version major --workspace=packages/three/geo-model",
     "tag:geo-model": "node -e \"const v=require('./packages/three/geo-model/package.json').version; require('child_process').execSync('git tag @electron-three-boiler/geo-model@'+v, {stdio:'inherit'})\"",
+    "version:custom-distance-material": "npm version patch --workspace=packages/three/material/CustomDistanceMaterial",
+    "version:custom-distance-material:minor": "npm version minor --workspace=packages/three/material/CustomDistanceMaterial",
+    "version:custom-distance-material:major": "npm version major --workspace=packages/three/material/CustomDistanceMaterial",
+    "tag:custom-distance-material": "node -e \"const v=require('./packages/three/material/CustomDistanceMaterial/package.json').version; require('child_process').execSync('git tag @electron-three-boiler/custom-distance-material@'+v, {stdio:'inherit'})\"",
     "release": "git push && git push --tags"
   },
   "dependencies": {

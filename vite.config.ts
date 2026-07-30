@@ -19,7 +19,10 @@ export default defineConfig({
       '@services': resolve(__dirname, 'src/services'),
       '@config': resolve(__dirname, 'src/config'),
       '@models': resolve(__dirname, 'src/types'),
-      '@utils': resolve(__dirname, 'src/utils')
+      '@utils': resolve(__dirname, 'src/utils'),
+      '@electron-three-boiler/model-tableau': resolve(__dirname, 'packages/algorithme/model-tableau/src/index.ts'),
+      '@electron-three-boiler/geo-model': resolve(__dirname, 'packages/three/geo-model/src/index.ts'),
+      '@electron-three-boiler/custom-distance-material': resolve(__dirname, 'packages/three/material/CustomDistanceMaterial/src/index.ts'),
     }
   },
   test: {

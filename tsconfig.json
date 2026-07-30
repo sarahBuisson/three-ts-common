@@ -6,6 +6,7 @@
     { "path": "./packages/exemple-lib1" },
     { "path": "./packages/exemple-lib2" },
     { "path": "./packages/algorithme/model-tableau" },
-    { "path": "./packages/three/geo-model" }
+    { "path": "./packages/three/geo-model" },
+    { "path": "./packages/three/material/CustomDistanceMaterial" }
   ]
 }
